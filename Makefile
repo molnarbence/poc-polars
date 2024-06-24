@@ -20,3 +20,6 @@ test:
 	ruff check .
 	mypy .
 	pytest
+
+run:
+	python app/main.py

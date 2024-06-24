@@ -163,4 +163,5 @@ cython_debug/
 #.idea/
 
 # csv files
-outputs/
+outputs/*.csv
+outputs/*.parquet

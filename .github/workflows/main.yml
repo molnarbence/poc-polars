@@ -32,5 +32,3 @@ jobs:
       run: |
         source ./.venv/bin/activate
         make test
-      env:
-        VIRTUAL_ENV: ./.venv

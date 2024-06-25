@@ -25,5 +25,5 @@ run:
 	python app/main.py
 
 clean:
-	rm ./outputs/*.parquet
-	rm ./outputs/*.csv
+	rm -f ./outputs/*.parquet
+	rm -f ./outputs/*.csv

@@ -12,6 +12,8 @@ def query_local_db() -> None:
     ) as conn:
         foo_df = pl.read_database("SELECT * from foo.bar", connection=conn)
 
+        print(foo_df)
+
         foo_df.write_csv("./outputs/bar.csv")
         foo_df.write_parquet("./outputs/bar.parquet")
 

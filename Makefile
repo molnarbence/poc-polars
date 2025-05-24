@@ -1,28 +1,25 @@
 install:
-	uv pip install -r requirements.txt
+	uv sync --frozen
 
-install-dev:
-	uv pip install -r requirements-dev.txt
-	uv pip install -e .
+upgrade:
+	uv lock --upgrade
 
-freeze:
-	UV_CUSTOM_COMPILE_COMMAND="make freeze" uv pip compile --output-file requirements.txt pyproject.toml
-	UV_CUSTOM_COMPILE_COMMAND="make freeze" uv pip compile --output-file requirements-dev.txt --extra=dev pyproject.toml
-
-freeze-upgrade:
-	UV_CUSTOM_COMPILE_COMMAND="make freeze-upgrade" uv pip compile --upgrade --output-file requirements.txt pyproject.toml
-	UV_CUSTOM_COMPILE_COMMAND="make freeze-upgrade" uv pip compile --upgrade --extra=dev --output-file requirements-dev.txt pyproject.toml
+lint:
+	uv run ruff check
+	uv run mypy
 
 format:
-	ruff format .
+	uv run ruff format
 
 test:
-	ruff check .
-	mypy .
+	uv run ruff check
+	uv run mypy .
 	pytest
 
+
+
 run:
-	python app/main.py
+	uv run main.py
 
 clean:
 	rm -f ./outputs/*.parquet

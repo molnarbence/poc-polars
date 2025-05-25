@@ -1,5 +1,8 @@
 import polars as pl
 
+from cloudflare.api import get_zones
+from configuration.config import load_config
+
 
 def foo(a: int, b: int) -> int:
     return a + b
@@ -16,5 +19,13 @@ def query_local_db() -> None:
     foo_df.write_parquet("./outputs/bar.parquet")
 
 
+def refresh_dns() -> None:
+    zones = get_zones()
+
+    for zone in zones:
+        print(f"Zone ID: {zone.id}, Name: {zone.name}")
+
+
 if __name__ == "__main__":
-    query_local_db()
+    load_config()
+    refresh_dns()
